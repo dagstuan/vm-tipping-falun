@@ -1,14 +1,34 @@
 {
   "name": "vm-tipping-falun",
   "version": "1.0.0",
-  "description": "app for vm-tipping i falun",
-  "main": "index.js",
+  "description": "falun vm tipping app",
+  "main": "hot-reload-server.js",
+  "dependencies": {
+    "6to5": "^3.4.1",
+    "6to5-core": "^3.4.1",
+    "6to5-loader": "^3.0.0",
+    "6to5-runtime": "^3.4.1",
+    "autoprefixer-loader": "^1.1.0",
+    "css-loader": "^0.9.1",
+    "immstruct": "^1.3.1",
+    "immutable": "^3.6.2",
+    "jsonp": "^0.1.0",
+    "less": "^2.3.1",
+    "less-loader": "^2.0.0",
+    "omniscient": "^2.1.0",
+    "react": "^0.12.2",
+    "react-hot-loader": "^1.1.4",
+    "style-loader": "^0.8.3",
+    "webpack": "^1.5.3",
+    "webpack-dev-server": "^1.7.0"
+  },
+  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "node hot-reload-server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:dagstuan/vm-tipping-sochi.git"
+    "url": "https://github.com/dagstuan/vm-tipping-sochi.git"
   },
   "keywords": [
     "falun",
@@ -16,10 +36,6 @@
     "vm",
     "tipping"
   ],
-  "author": "BEKK",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/dagstuan/vm-tipping-sochi/issues"
-  },
-  "homepage": "https://github.com/dagstuan/vm-tipping-sochi"
+  "author": "@dagstuan",
+  "license": "mit"
 }
