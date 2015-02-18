@@ -1,0 +1,25 @@
+{
+  "name": "vm-tipping-falun",
+  "version": "1.0.0",
+  "description": "app for vm-tipping i falun",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:dagstuan/vm-tipping-sochi.git"
+  },
+  "keywords": [
+    "falun",
+    "ski",
+    "vm",
+    "tipping"
+  ],
+  "author": "BEKK",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dagstuan/vm-tipping-sochi/issues"
+  },
+  "homepage": "https://github.com/dagstuan/vm-tipping-sochi"
+}
