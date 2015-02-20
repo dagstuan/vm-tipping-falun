@@ -8,20 +8,20 @@ export default component('App', ({entries}) => {
   }).toArray();
 
   return <div className="faluntipping">
-            {allUsers}
-          </div>
+    {allUsers}
+  </div>
 });
-    
 
-  // or with jsx:
-  //
-  // <div className="app">
-  //   {counter.deref()}
-  // </div>);
-  //
-  // just remember to:
-  //
-  // import React from 'react';
+
+// or with jsx:
+//
+// <div className="app">
+//   {counter.deref()}
+// </div>);
+//
+// just remember to:
+//
+// import React from 'react';
 
 
 // enable 6to5-loader?experimental to use generators etc.

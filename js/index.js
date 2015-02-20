@@ -13,9 +13,9 @@ let data = immstruct({
 });
 
 GoogleData(function(googleData) {
-	data.cursor().update(function(){
-		return Immutable.fromJS(googleData);
-	});
+  data.cursor().update(function(){
+    return Immutable.fromJS(googleData);
+  });
 });
 
 let render = () =>
@@ -26,6 +26,6 @@ let render = () =>
 render();
 data.on('swap', render);
 
-// setInterval(
-//   () => data.cursor().update('counter', i => i + 1),
-//   1000);
+  // setInterval(
+  //   () => data.cursor().update('counter', i => i + 1),
+  //   1000);
