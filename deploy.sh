@@ -1,6 +1,6 @@
 #!/bin/sh
 echo bundling..
-./node_modules/.bin/webpack -p
+./node_modules/.bin/webpack --config webpack.config.prod.js -p
 
 echo committing..
 git add build/*
