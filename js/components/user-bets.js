@@ -2,8 +2,8 @@ import React from 'react';
 import component from 'omniscient';
 
 export default component('Bets', ({bets, competitions}) => {
-  var betList = bets.map(function(bet, i) {
-    return <div key={i} className="bet">
+  let betList = bets.toArray().map((bet, i) =>
+    <div key={i} className="bet">
       <h2 className="competition-name">
         {competitions.get(bet.get('id')).get('name')}
       </h2>
@@ -13,9 +13,9 @@ export default component('Bets', ({bets, competitions}) => {
         <li className="thirdPlace">{bet.get('3')}</li>
       </ul>
     </div>
-  }).toArray();
+  );
 
   return <ul className="bets">
-  	{betList}
+    {betList}
   </ul>
 }).jsx;

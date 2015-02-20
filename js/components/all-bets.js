@@ -5,12 +5,12 @@ import User from './user';
 import UserBets from './user-bets';
 
 export default component('AllBets', ({entries, competitions}) => {
-  var allUsers = entries.map(function(entry, i){
-    return <div key={i}>
+  let allUsers = entries.toArray().map((entry, i) =>
+    <div key={i}>
       <User name={entry.get('name')} />
       <UserBets bets={entry.get('bets')} competitions={competitions} />
     </div>
-  }).toArray();
+  );
 
   return <div className="faluntipping">
     {allUsers}

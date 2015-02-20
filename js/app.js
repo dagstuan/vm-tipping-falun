@@ -19,12 +19,14 @@ let data = immstruct({
 GoogleData(googleData => data.cursor().update(_ => Immutable.fromJS(googleData)));
 
 var Layout = component(function () {
-  return <div>
-    <ul>
-      <li><Link to="all-bets">All Bets</Link></li>
-    </ul>
-    <RouteHandler {...this.props}/>
-  </div>;
+  return (
+    <div>
+      <ul>
+        <li><Link to="all-bets">All Bets</Link></li>
+      </ul>
+      <RouteHandler {...this.props}/>
+    </div>
+  );
 }).jsx;
 
 var routes = (
