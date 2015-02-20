@@ -1,0 +1,19 @@
+.menu {
+  display: flex;
+  flex: 1;
+}
+
+.menu-item {
+  flex: 1;
+  background-color: @color-secondary;
+  color: @color-white;
+
+  > a {
+    color: @color-blue-light;
+    display: block;
+    padding: 1rem;
+    &:hover {
+      color: @color-white;
+    }
+  }
+}

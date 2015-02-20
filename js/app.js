@@ -7,7 +7,7 @@ let { Route, RouteHandler, DefaultRoute, Link } = Router;
 
 import GoogleData from './googleData';
 
-import '../less/index.less';
+import '../less/app.less';
 
 import AllBets from './components/all-bets';
 
@@ -21,11 +21,18 @@ GoogleData(googleData => data.cursor().update(_ => Immutable.fromJS(googleData))
 
 var Layout = component(function () {
   return (
-    <div>
-      <ul>
-        <li><Link to="all-bets">All Bets</Link></li>
+    <div className="layout">
+      <div className="layout-header">
+        <Link to="all-bets">
+          <img src="images/logo.png" className="layout-logo" alt="logo"/>
+        </Link>
+      </div>
+      <ul className="menu">
+        <li className="menu-item"><Link to="all-bets">All Bets</Link></li>
       </ul>
-      <RouteHandler {...this.props}/>
+      <div className="layout-content">
+        <RouteHandler {...this.props}/>
+      </div>
     </div>
   );
 }).jsx;

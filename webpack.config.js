@@ -28,6 +28,14 @@ module.exports = {
         ]
       },
       {
+        test: /\.woff(2)?(.*)?$/,
+        loader: "url-loader?limit=10000&minetype=application/font-woff"
+      },
+      {
+        test: /\.(ttf|eot|svg)(.*)?$/,
+        loader: "file-loader"
+      },
+      {
         test: /\.less$/,
         loaders: [
           "style-loader",
@@ -35,7 +43,7 @@ module.exports = {
           "autoprefixer-loader?browsers=last 2 version",
           "less-loader?strictMath&cleancss"
         ]
-      }
+      },
     ]
   }
 };
