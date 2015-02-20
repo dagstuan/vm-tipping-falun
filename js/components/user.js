@@ -1,8 +1,8 @@
 import React from 'react';
 import component from 'omniscient';
 
-export default component('User', ({name}) =>
+export default component('User', ({user}) =>
   <div className="user">
-    {name}
+    {user.get('name')} ({user.get('points')})
   </div>
 ).jsx;

@@ -4,6 +4,26 @@ module.exports = function(callback) {
   console.log('getting data!');
   jsonp('https://spreadsheets.google.com/feeds/list/1HaBpOgbo0uHEDc3zfFJx_XwI4y6ZGkX9I2Wtii0VhmE/1/public/values?alt=json-in-script', function(err, googleBets){
     jsonp('https://spreadsheets.google.com/feeds/list/1HaBpOgbo0uHEDc3zfFJx_XwI4y6ZGkX9I2Wtii0VhmE/3/public/values?alt=json-in-script', function(err, googleResults){
+
+      var allResults = googleResults.feed.entry.map(function(googleResult) {
+        return googleResult.gsx$resultat.$t;
+      });
+
+      var results = [];
+
+      var competitionId = 0;
+      while(allResults.length > 0) {
+        results.push({
+          id: competitionId,
+          1: allResults[0],
+          2: allResults[1],
+          3: allResults[2]
+        });
+
+        competitionId++;
+        allResults = allResults.slice(3);
+      }
+
       var entries = googleBets.feed.entry.map(function(googleEntry) {
         var entry = {
           name: googleEntry.gsx$navn.$t
@@ -39,27 +59,48 @@ module.exports = function(callback) {
           bronze: googleEntry.gsx$antallbronse.$t
         }
 
+        entry.points = results.reduce((acc, rank, i) => {
+          var isNotDone = rank[1] == '';
+          if (isNotDone){
+            return acc;
+          }
+
+          let points = acc;
+          var bet = entry.bets[i];
+
+          var pointsForCorrectPlace = n => {
+            if (bet[n] == rank[n]) {
+              return 3;
+            }
+            return 0;
+          };
+
+          var pointsForAmongTopThree = n => {
+            var ranks = [1, 2, 3];
+            ranks.splice(ranks.indexOf(n), 1)
+            for (var i = 0; i < ranks.length; i++) {
+              var rankNum = ranks[i];
+              var eachRank = rank[rankNum];
+              if (bet[n] == eachRank) {
+                return 1;
+              }
+            }
+            return 0;
+          };
+
+          points += pointsForCorrectPlace(1);
+          points += pointsForCorrectPlace(2);
+          points += pointsForCorrectPlace(3);
+
+          points += pointsForAmongTopThree(1);
+          points += pointsForAmongTopThree(2);
+          points += pointsForAmongTopThree(3);
+
+          return points;
+        }, 0);
+
         return entry;
       });
-
-      var allResults = googleResults.feed.entry.map(function(googleResult) {
-        return googleResult.gsx$resultat.$t;
-      });
-
-      var results = [];
-
-      var competitionId = 0;
-      while(allResults.length > 0) {
-        results.push({
-          id: competitionId,
-          1: allResults[0],
-          2: allResults[1],
-          3: allResults[2]
-        });
-
-        competitionId++;
-        allResults = allResults.slice(3);
-      }
 
       callback({
         entries: entries,

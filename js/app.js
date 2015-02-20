@@ -1,4 +1,4 @@
-import fastclick from 'fastclick';
+import FastClick from 'fastclick';
 import React from 'react';
 import component from 'omniscient';
 import immstruct from 'immstruct';
@@ -11,6 +11,7 @@ import GoogleData from './googleData';
 import '../less/app.less';
 
 import AllBets from './components/all-bets';
+import Ranking from './components/ranking';
 
 let data = immstruct({
   entries: [],
@@ -20,7 +21,8 @@ let data = immstruct({
 
 GoogleData(googleData => data.cursor().update(_ => Immutable.fromJS(googleData)));
 
-var Layout = component(function () {
+var AlwaysRerender = [{ shouldComponentUpdate: () => true }];
+var Layout = component(AlwaysRerender, function () {
   return (
     <div className="layout">
       <div className="layout-header">
@@ -29,6 +31,7 @@ var Layout = component(function () {
         </Link>
       </div>
       <ul className="menu">
+        <li className="menu-item"><Link to="ranking">Ranking</Link></li>
         <li className="menu-item"><Link to="all-bets">All Bets</Link></li>
       </ul>
       <div className="layout-content">
@@ -40,14 +43,15 @@ var Layout = component(function () {
 
 var routes = (
   <Route handler={Layout}>
-    <DefaultRoute handler={AllBets}/>
+    <DefaultRoute handler={Ranking}/>
     <Route name="all-bets" handler={AllBets}/>
+    <Route name="ranking" handler={Ranking}/>
   </Route>
 );
 
 Router.run(routes, rerender(data, document.body));
 
-fastclick(document.body);
+FastClick.attach(document.body);
 
 function rerender (structure, el) {
   let Handler, state;

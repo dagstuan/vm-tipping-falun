@@ -7,8 +7,10 @@ import UserBets from './user-bets';
 export default component('AllBets', ({entries, competitions}) => {
   let allUsers = entries.toArray().map((entry, i) =>
     <div key={i}>
-      <User name={entry.get('name')} />
-      <UserBets bets={entry.get('bets')} competitions={competitions} />
+      <h1><User user={entry} /></h1>
+      <UserBets
+        bets={entry.get('bets')}
+        competitions={competitions} />
     </div>
   );
 
