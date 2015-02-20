@@ -13,7 +13,7 @@ git add build/main.entry.js
 git add index.html
 git commit -m "dump dist"
 
-echo moving to gh-pages
+echo moving to gh-pages..
 git checkout gh-pages
 
 echo checking out files from master..
@@ -29,6 +29,6 @@ git commit -m "deploy"
 echo deploying..
 git push origin gh-pages
 
-echo moving back
+echo moving back..
 git checkout master
 git stash pop
