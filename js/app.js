@@ -1,35 +1,57 @@
 import React from 'react';
 import component from 'omniscient';
-import User from './user';
-import Bets from './bets';
+import immstruct from 'immstruct';
+import Immutable from 'immutable';
+import Router from 'react-router';
+let { Route, RouteHandler, DefaultRoute, Link } = Router;
 
-export default component('App', ({entries, competitions}) => {
-  var allUsers = entries.map(function(entry){
-    return <div>
-      <User name={entry.get('name')} />
-      <Bets bets={entry.get('bets')} competitions={competitions} />
-    </div>
-  }).toArray();
+import GoogleData from './googleData';
 
-  return <div className="faluntipping">
-    {allUsers}
-  </div>
+import '../less/index.less';
+
+import AllBets from './components/all-bets';
+
+let data = immstruct({
+  entries: [],
+  competitions: []
 });
 
+GoogleData(googleData => data.cursor().update(_ => Immutable.fromJS(googleData)));
 
-// or with jsx:
-//
-// <div className="app">
-//   {counter.deref()}
-// </div>);
-//
-// just remember to:
-//
-// import React from 'react';
+var Layout = component(function () {
+  return <div>
+    <ul>
+      <li><Link to="all-bets">All Bets</Link></li>
+    </ul>
+    <RouteHandler {...this.props}/>
+  </div>;
+}).jsx;
 
+var routes = (
+  <Route handler={Layout}>
+    <DefaultRoute handler={AllBets}/>
+    <Route name="all-bets" handler={AllBets}/>
+  </Route>
+);
 
-// enable 6to5-loader?experimental to use generators etc.
-// export function * counter () {
-//   var n = 0;
-//   while (true) yield n++;
-// }
+Router.run(routes, rerender(data, document.body));
+
+function rerender (structure, el) {
+  let Handler, state;
+
+  function render (h, s) {
+    if (h) Handler = h;
+    if (s) state = s;
+
+    React.render(<Handler
+                 entries={data.cursor('entries')}
+                 competitions={data.cursor('competitions')}
+                 statics={state} />, el);
+  }
+
+  structure.on('swap', function() {
+    render();
+  });
+
+  return render;
+}
