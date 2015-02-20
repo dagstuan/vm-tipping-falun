@@ -1,13 +1,11 @@
 #!/bin/sh
-echo saving away your changes..
-git stash
-
 echo bundling..
 ./node_modules/.bin/webpack -p
 
 echo committing..
 git add build/*
 git add index.html
+git add images
 git commit -m "dump dist"
 
 echo moving to gh-pages..
@@ -30,4 +28,3 @@ git push -f origin gh-pages
 
 echo moving back..
 git checkout master
-git stash pop
