@@ -9,7 +9,7 @@ export default component('Ranking', ({entries, competitions}) => {
 
   return <ul className="ranking">
     {ranking.toArray().map(entry =>
-      <li>
+      <li className="rank">
         <h1><User user={entry} /></h1>
       </li>
     )}
