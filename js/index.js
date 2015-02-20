@@ -9,7 +9,8 @@ import App from './app';
 import '../less/index.less';
 
 let data = immstruct({
-  entries: []
+  entries: [],
+  competitions: []
 });
 
 GoogleData(function(googleData) {
@@ -20,7 +21,7 @@ GoogleData(function(googleData) {
 
 let render = () =>
   React.render(
-    App({ entries: data.cursor('entries') }),
+    App({ entries: data.cursor('entries'), competitions: data.cursor('competitions') }),
     document.body);
 
 render();

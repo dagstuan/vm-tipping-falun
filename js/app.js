@@ -1,10 +1,14 @@
 import React from 'react';
 import component from 'omniscient';
-import User from './user'
+import User from './user';
+import Bets from './bets';
 
-export default component('App', ({entries}) => {
+export default component('App', ({entries, competitions}) => {
   var allUsers = entries.map(function(entry){
-    return <User name={entry.get('name')} />
+    return <div>
+      <User name={entry.get('name')} />
+      <Bets bets={entry.get('bets')} competitions={competitions} />
+    </div>
   }).toArray();
 
   return <div className="faluntipping">
