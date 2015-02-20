@@ -13,7 +13,8 @@ import AllBets from './components/all-bets';
 
 let data = immstruct({
   entries: [],
-  competitions: []
+  competitions: [],
+  results: []
 });
 
 GoogleData(googleData => data.cursor().update(_ => Immutable.fromJS(googleData)));
@@ -48,6 +49,7 @@ function rerender (structure, el) {
     React.render(<Handler
                  entries={data.cursor('entries')}
                  competitions={data.cursor('competitions')}
+                 results={data.cursor('results')}
                  statics={state} />, el);
   }
 
