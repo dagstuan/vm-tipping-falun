@@ -13,13 +13,30 @@ import '../less/app.less';
 import AllBets from './components/all-bets';
 import Ranking from './components/ranking';
 
-let data = immstruct({
+const CachedDataKey = 'vm-falun-data';
+let cachedData = localStorage.getItem(CachedDataKey);
+let cachedJson;
+if (cachedData) {
+  try {
+    cachedJson = JSON.parse(cachedData);
+  }
+  catch (e) {
+    localStorage.removeItem(CachedDataKey);
+  }
+}
+
+var InitialData = cachedJson || {
   entries: [],
   competitions: [],
   results: []
-});
+};
 
-GoogleData(googleData => data.cursor().update(_ => Immutable.fromJS(googleData)));
+let data = immstruct(InitialData);
+
+GoogleData(googleData => {
+  data.cursor().update(_ => Immutable.fromJS(googleData));
+  localStorage.setItem(CachedDataKey, JSON.stringify(googleData));
+});
 
 var AlwaysRerender = [{ shouldComponentUpdate: () => true }];
 var Layout = component(AlwaysRerender, function () {

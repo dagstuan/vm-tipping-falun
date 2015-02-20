@@ -5,14 +5,13 @@ import User from './user';
 
 export default component('Ranking', ({entries}) => {
 
-  var ranking = entries.deref().sortBy(
-    (value, key, iter) => value.get('points'),
-    (a, b) => a < b);
+  var ranking = entries.deref().sort((a, b) =>
+                                    a.get('points') < b.get('points'));
 
   return <ul className="ranking">
-    {ranking.toArray().map(entry =>
-      <li className="rank">
-        <h1><User user={entry} /></h1>
+    {ranking.toArray().map((entry, i) =>
+      <li className="rank" key={i}>
+        <h1 className="h2"><User user={entry} /></h1>
       </li>
     )}
   </ul>
