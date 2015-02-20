@@ -5,7 +5,7 @@ module.exports = {
   output: {
     path: __dirname + '/build/',
     filename: '[name].entry.js',
-    publicPath: '/vm-tipping-falun/build/'
+    publicPath: '/vm-tipping-falun/'
   },
   module: {
     loaders: require('./webpack-loaders')
