@@ -1,3 +1,4 @@
+import fastclick from 'fastclick';
 import React from 'react';
 import component from 'omniscient';
 import immstruct from 'immstruct';
@@ -45,6 +46,8 @@ var routes = (
 );
 
 Router.run(routes, rerender(data, document.body));
+
+fastclick(document.body);
 
 function rerender (structure, el) {
   let Handler, state;
