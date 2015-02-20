@@ -3,9 +3,11 @@ import component from 'omniscient';
 
 import User from './user';
 
-export default component('Ranking', ({entries, competitions}) => {
+export default component('Ranking', ({entries}) => {
 
-  var ranking = entries.sort(desc);
+  var ranking = entries.deref().sortBy(
+    (value, key, iter) => value.get('points'),
+    (a, b) => a < b);
 
   return <ul className="ranking">
     {ranking.toArray().map(entry =>
@@ -16,6 +18,3 @@ export default component('Ranking', ({entries, competitions}) => {
   </ul>
 }).jsx;
 
-function desc (a, b) {
-  return a.get('points') < b.get('points');
-}
