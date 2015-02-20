@@ -16,9 +16,11 @@ git checkout gh-pages
 echo checking out files from master..
 git checkout master -- build
 git checkout master -- index.html
+git checkout master -- images
 
 git add build
 git add index.html
+git add images
 
 echo committing..
 git commit -m "deploy"
