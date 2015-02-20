@@ -6,7 +6,7 @@ echo committing..
 git add build/*
 git add index.html
 git add images
-git commit -m "dump dist"
+git commit -m "bump dist"
 
 echo moving to gh-pages..
 git checkout gh-pages
