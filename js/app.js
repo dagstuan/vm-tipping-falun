@@ -43,7 +43,7 @@ var Layout = component(AlwaysRerender, function () {
   return (
     <div className="layout">
       <div className="layout-header">
-        <Link to="all-bets">
+        <Link to="ranking">
           <img src="images/logo.png" className="layout-logo" alt="logo"/>
         </Link>
       </div>
