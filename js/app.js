@@ -12,6 +12,7 @@ import '../less/app.less';
 
 import AllBets from './components/all-bets';
 import Ranking from './components/ranking';
+import DayList from './components/daylist';
 
 const CachedDataKey = 'vm-falun-data';
 let cachedData = localStorage.getItem(CachedDataKey);
@@ -28,12 +29,15 @@ if (cachedData) {
 var InitialData = cachedJson || {
   entries: [],
   competitions: [],
-  results: []
+  results: [],
+  currentUser: ''
 };
 
 let data = immstruct(InitialData);
 
 GoogleData(googleData => {
+  googleData['currentUser'] = 'Eivind'
+
   data.cursor().update(_ => Immutable.fromJS(googleData));
   localStorage.setItem(CachedDataKey, JSON.stringify(googleData));
 });
@@ -50,6 +54,7 @@ var Layout = component(AlwaysRerender, function () {
       <ul className="menu">
         <li className="menu-item"><Link to="ranking">Ranking</Link></li>
         <li className="menu-item"><Link to="all-bets">All Bets</Link></li>
+        <li className="menu-item"><Link to="daylist">Day list</Link></li>
       </ul>
       <div className="layout-content">
         <RouteHandler {...this.props}/>
@@ -63,6 +68,7 @@ var routes = (
     <DefaultRoute handler={Ranking}/>
     <Route name="all-bets" handler={AllBets}/>
     <Route name="ranking" handler={Ranking}/>
+    <Route name="daylist" handler={DayList}/>
   </Route>
 );
 
@@ -81,6 +87,7 @@ function rerender (structure, el) {
                  entries={data.cursor('entries')}
                  competitions={data.cursor('competitions')}
                  results={data.cursor('results')}
+                 currentUser={data.cursor('currentUser')}
                  statics={state} />, el);
   }
 
