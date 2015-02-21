@@ -7,9 +7,9 @@ export default component('AllBets', ({bet, competitions}) => {
       {competitions.get(bet.get('id')).get('name')}
     </h2>
     <ul>
-      <li className="firstPlace">{bet.get('1')}</li>
-      <li className="secondPlace">{bet.get('2')}</li>
-      <li className="thirdPlace">{bet.get('3')}</li>
+      <li className="firstPlace">1. {bet.get('1')}</li>
+      <li className="secondPlace">2. {bet.get('2')}</li>
+      <li className="thirdPlace">3. {bet.get('3')}</li>
     </ul>
   </div>
 }).jsx;

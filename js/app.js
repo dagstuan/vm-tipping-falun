@@ -12,7 +12,7 @@ import '../less/app.less';
 
 import AllBets from './components/all-bets';
 import Ranking from './components/ranking';
-import DayList from './components/daylist';
+import TodaysBets from './components/todays-bets';
 
 const CachedDataKey = 'vm-falun-data';
 let cachedData = localStorage.getItem(CachedDataKey);
@@ -54,7 +54,7 @@ var Layout = component(AlwaysRerender, function () {
       <ul className="menu">
         <li className="menu-item"><Link to="ranking">Ranking</Link></li>
         <li className="menu-item"><Link to="all-bets">All Bets</Link></li>
-        <li className="menu-item"><Link to="daylist">Day list</Link></li>
+        <li className="menu-item"><Link to="todays-bets">Todays bets</Link></li>
       </ul>
       <div className="layout-content">
         <RouteHandler {...this.props}/>
@@ -68,7 +68,7 @@ var routes = (
     <DefaultRoute handler={Ranking}/>
     <Route name="all-bets" handler={AllBets}/>
     <Route name="ranking" handler={Ranking}/>
-    <Route name="daylist" handler={DayList}/>
+    <Route name="todays-bets" handler={TodaysBets}/>
   </Route>
 );
 

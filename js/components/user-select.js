@@ -2,10 +2,10 @@ import React from 'react';
 import component from 'omniscient';
 
 export default component('DayList', ({entries, currentUser}) => {
-  var options = entries.map(function(entry) {
+  var options = entries.map(function(entry, i) {
     var name = entry.get('name');
 
-  	return <option value={name}>{name}</option>
+  	return <option key={i} value={name}>{name}</option>
   }).toArray();
 
   var handleChange = function(event) {
