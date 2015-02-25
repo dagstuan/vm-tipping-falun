@@ -144,7 +144,7 @@ module.exports = function(callback) {
           date: "24.02"
         },{
           name: "15 km menn friteknikk",
-          date: "24.02"
+          date: "25.02"
         },{
           name: "4 X 5 km stafett kvinner",
           date: "26.02"
